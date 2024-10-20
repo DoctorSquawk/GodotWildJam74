@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://b07p2d66pmox1"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/inventory.gd" id="2_g6q22"]
+[ext_resource type="PackedScene" uid="uid://bgsiklm3n0vte" path="res://Assets/Scenes/InventorySpace.tscn" id="3_nbpcd"]
+[ext_resource type="Texture2D" uid="uid://bv0qo6syh8ms6" path="res://Assets/Visual Assets/Room/RoomSketch.jpg" id="4_34ktl"]
+[ext_resource type="PackedScene" uid="uid://baac1ix0rwejt" path="res://Assets/Scenes/InteractiveObjects/Toolbox.tscn" id="5_gwrpf"]
+[ext_resource type="PackedScene" uid="uid://g82ujyg2wuw0" path="res://Assets/Scenes/InteractiveObjects/Chest.tscn" id="6_100f3"]
+[ext_resource type="PackedScene" uid="uid://dxf3y5nvbffhd" path="res://Assets/Scenes/InteractiveObjects/SewingKit.tscn" id="6_rof6x"]
+[ext_resource type="PackedScene" uid="uid://c8ccvgut1c2fi" path="res://Assets/Scenes/InteractiveObjects/Drawer.tscn" id="7_1to4s"]
+[ext_resource type="PackedScene" uid="uid://cbkxxnnh7f1gp" path="res://Assets/Scenes/InteractiveObjects/Bag.tscn" id="8_a865k"]
+[ext_resource type="PackedScene" uid="uid://bfb1tat0yoxub" path="res://Assets/Scenes/InteractiveObjects/Box.tscn" id="9_7ijb0"]
+[ext_resource type="PackedScene" uid="uid://cmx5q6f7knh75" path="res://Assets/Scenes/InteractiveObjects/Doll.tscn" id="10_7s5o0"]
+[ext_resource type="Script" path="res://Assets/Scripts/decriptive_text.gd" id="11_v2f2s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tblrg"]
+font_size = 25
+
+[node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1440.0
+offset_bottom = 810.0
+mouse_filter = 2
+color = Color(0.051971, 0.051971, 0.051971, 1)
+
+[node name="RoomSketch" type="Sprite2D" parent="."]
+position = Vector2(795.625, 349.125)
+scale = Vector2(1.13675, 0.61375)
+texture = ExtResource("4_34ktl")
+
+[node name="Inventory" type="Control" parent="." node_paths=PackedStringArray("sewing_kit", "toolbox", "box", "drawer", "bag", "chest", "doll")]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 66.0
+offset_top = 77.0
+offset_right = 66.0
+offset_bottom = 77.0
+mouse_filter = 2
+script = ExtResource("2_g6q22")
+max_spaces = 4
+test_inventory = ExtResource("3_nbpcd")
+sewing_kit = NodePath("../Interactive Objects/SewingKit")
+toolbox = NodePath("../Interactive Objects/Toolbox")
+box = NodePath("../Interactive Objects/Box")
+drawer = NodePath("../Interactive Objects/Drawer")
+bag = NodePath("../Interactive Objects/Bag")
+chest = NodePath("../Interactive Objects/Chest")
+doll = NodePath("../Interactive Objects/Doll")
+
+[node name="Interactive Objects" type="Node" parent="."]
+
+[node name="Toolbox" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("5_gwrpf")]
+position = Vector2(526, 215)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="SewingKit" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("6_rof6x")]
+position = Vector2(339, 320)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="Box" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("9_7ijb0")]
+position = Vector2(1086, 596)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="Chest" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("6_100f3")]
+position = Vector2(1171, 397)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="Drawer" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("7_1to4s")]
+position = Vector2(394, 393)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="Bag" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("8_a865k")]
+position = Vector2(792, 254)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="Doll" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("10_7s5o0")]
+position = Vector2(786, 465)
+descriptive_text = NodePath("../../DescriptiveText")
+
+[node name="DescriptiveText" type="Label" parent="."]
+offset_left = 227.0
+offset_top = 665.0
+offset_right = 1365.0
+offset_bottom = 738.0
+label_settings = SubResource("LabelSettings_tblrg")
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("11_v2f2s")

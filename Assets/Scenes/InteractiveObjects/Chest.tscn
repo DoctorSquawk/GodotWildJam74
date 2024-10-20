@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://g82ujyg2wuw0"]
+
+[ext_resource type="Texture2D" uid="uid://b4iy3fu84116x" path="res://Assets/Visual Assets/InteractiveObjects/Chest.png" id="1_768lh"]
+[ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/chest.gd" id="1_g6sax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytg8r"]
+size = Vector2(112.806, 99.0998)
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_g6sax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_768lh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.14263, -5.50014)
+rotation = 0.66136
+skew = -0.256563
+shape = SubResource("RectangleShape2D_ytg8r")

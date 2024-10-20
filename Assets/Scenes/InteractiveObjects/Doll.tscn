@@ -1,0 +1,148 @@
+[gd_scene load_steps=16 format=3 uid="uid://cmx5q6f7knh75"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/doll.gd" id="1_k3ld0"]
+[ext_resource type="Texture2D" uid="uid://basn8amavkcte" path="res://Assets/Visual Assets/Room/Chair.png" id="2_jqa7a"]
+[ext_resource type="Texture2D" uid="uid://dtpma2f1oc4tw" path="res://Assets/Visual Assets/InteractiveObjects/Doll/Init.png" id="3_bpen6"]
+[ext_resource type="Texture2D" uid="uid://be54oaby760dk" path="res://Assets/Visual Assets/InteractiveObjects/Doll/Base.png" id="4_cn5ua"]
+[ext_resource type="Texture2D" uid="uid://c0o1ujwfvpg8w" path="res://Assets/Visual Assets/InteractiveObjects/Doll/EyeR.png" id="5_t3gb4"]
+[ext_resource type="Texture2D" uid="uid://qtymp8x056oi" path="res://Assets/Visual Assets/InteractiveObjects/Doll/ArmsR.png" id="6_gw5bm"]
+[ext_resource type="Texture2D" uid="uid://vay71alqosf5" path="res://Assets/Visual Assets/InteractiveObjects/Doll/StakeR.png" id="7_ru2p1"]
+[ext_resource type="Texture2D" uid="uid://b263wqgs3kiuw" path="res://Assets/Visual Assets/InteractiveObjects/Doll/MouthF.png" id="8_jhovj"]
+[ext_resource type="Texture2D" uid="uid://c2c4jklh3fetr" path="res://Assets/Visual Assets/InteractiveObjects/Doll/MouthS.png" id="9_x70sp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqxe3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bpen6")
+}],
+"loop": true,
+"name": &"init_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cn5ua")
+}],
+"loop": false,
+"name": &"interact_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02fxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_t3gb4")
+}],
+"loop": true,
+"name": &"toggle_on",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhhey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gw5bm")
+}],
+"loop": true,
+"name": &"toggle_on",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twpym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ru2p1")
+}],
+"loop": true,
+"name": &"toggle_on",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hiym0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_jhovj")
+}],
+"loop": true,
+"name": &"mouth_frown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_x70sp")
+}],
+"loop": true,
+"name": &"mouth_smile",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46yg1"]
+size = Vector2(82, 145)
+
+[node name="Doll" type="Area2D" node_paths=PackedStringArray("base_animator", "eye_animator", "arms_animator", "stake_animator", "mouth_animator")]
+script = ExtResource("1_k3ld0")
+base_animator = NodePath("Base")
+eye_animator = NodePath("Eye")
+arms_animator = NodePath("Arms")
+stake_animator = NodePath("Stake")
+mouth_animator = NodePath("Mouth")
+
+[node name="Chair" type="Sprite2D" parent="."]
+texture = ExtResource("2_jqa7a")
+
+[node name="Base" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xqxe3")
+animation = &"init_idle"
+
+[node name="Eye" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_02fxa")
+
+[node name="Arms" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mhhey")
+
+[node name="Stake" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_twpym")
+
+[node name="Mouth" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hiym0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_46yg1")

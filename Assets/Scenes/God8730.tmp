@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b07p2d66pmox1"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/InteractiveObject.gd" id="1_yf70i"]
+[ext_resource type="Script" path="res://Assets/Scripts/ClickCollisionDetection.gd" id="2_bkj65"]
+[ext_resource type="Script" path="res://Assets/Scripts/ButtonTest.gd" id="3_ray8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u11ic"]
+size = Vector2(95, 206)
+
+[node name="Main" type="Node2D"]
+
+[node name="InteractiveObject" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yf70i")
+
+[node name="Area2D" type="Area2D" parent="InteractiveObject"]
+visible = false
+disable_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveObject/Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_u11ic")
+script = ExtResource("2_bkj65")
+
+[node name="Button" type="Button" parent="InteractiveObject"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 67.0
+offset_bottom = 55.0
+script = ExtResource("3_ray8d")

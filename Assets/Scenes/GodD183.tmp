@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://b07p2d66pmox1"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/inventory.gd" id="2_g6q22"]
+[ext_resource type="PackedScene" uid="uid://bgsiklm3n0vte" path="res://Assets/Scenes/InventorySpace.tscn" id="3_nbpcd"]
+[ext_resource type="Texture2D" uid="uid://bv0qo6syh8ms6" path="res://Assets/Visual Assets/Room/RoomSketch.jpg" id="4_34ktl"]
+[ext_resource type="PackedScene" uid="uid://baac1ix0rwejt" path="res://Assets/Scenes/InteractiveObjects/Toolbox.tscn" id="5_gwrpf"]
+[ext_resource type="PackedScene" uid="uid://g82ujyg2wuw0" path="res://Assets/Scenes/InteractiveObjects/Chest.tscn" id="6_100f3"]
+[ext_resource type="PackedScene" uid="uid://dxf3y5nvbffhd" path="res://Assets/Scenes/InteractiveObjects/SewingKit.tscn" id="6_rof6x"]
+[ext_resource type="PackedScene" uid="uid://c8ccvgut1c2fi" path="res://Assets/Scenes/InteractiveObjects/Drawer.tscn" id="7_1to4s"]
+[ext_resource type="PackedScene" uid="uid://cbkxxnnh7f1gp" path="res://Assets/Scenes/InteractiveObjects/Bag.tscn" id="8_a865k"]
+[ext_resource type="PackedScene" uid="uid://bfb1tat0yoxub" path="res://Assets/Scenes/InteractiveObjects/Box.tscn" id="9_7ijb0"]
+
+[node name="Main" type="Node2D"]
+
+[node name="RoomSketch" type="Sprite2D" parent="."]
+position = Vector2(483, 270)
+scale = Vector2(0.5495, 0.5495)
+texture = ExtResource("4_34ktl")
+
+[node name="Inventory" type="Control" parent="." node_paths=PackedStringArray("sewing_kit", "toolbox", "box", "drawer", "bag", "chest")]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 415.0
+offset_right = 25.0
+offset_bottom = 415.0
+script = ExtResource("2_g6q22")
+max_spaces = 4
+test_inventory = ExtResource("3_nbpcd")
+sewing_kit = NodePath("../Interactive Objects/SewingKit")
+toolbox = NodePath("../Interactive Objects/Toolbox")
+box = NodePath("../Interactive Objects/Box")
+drawer = NodePath("../Interactive Objects/Drawer")
+bag = NodePath("../Interactive Objects/Bag")
+chest = NodePath("../Interactive Objects/Chest")
+
+[node name="Interactive Objects" type="Node" parent="."]
+
+[node name="Toolbox" parent="Interactive Objects" instance=ExtResource("5_gwrpf")]
+position = Vector2(355, 150)
+
+[node name="SewingKit" parent="Interactive Objects" instance=ExtResource("6_rof6x")]
+position = Vector2(257, 238)
+
+[node name="Box" parent="Interactive Objects" instance=ExtResource("9_7ijb0")]
+position = Vector2(617, 467)
+
+[node name="Chest" parent="Interactive Objects" instance=ExtResource("6_100f3")]
+position = Vector2(684, 323)
+
+[node name="Drawer" parent="Interactive Objects" instance=ExtResource("7_1to4s")]
+position = Vector2(289, 327)
+
+[node name="Bag" parent="Interactive Objects" instance=ExtResource("8_a865k")]
+position = Vector2(481, 196)

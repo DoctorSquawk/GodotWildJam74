@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ccvgut1c2fi"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/drawer.gd" id="1_2rx3b"]
+[ext_resource type="Texture2D" uid="uid://chobpu0o3iebn" path="res://Assets/Visual Assets/InteractiveObjects/Drawer.png" id="1_na4eh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ux17w"]
+size = Vector2(56.0959, 93.2462)
+
+[node name="Drawer" type="Area2D"]
+script = ExtResource("1_2rx3b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_na4eh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, -6)
+rotation = -1.62969
+skew = -0.706858
+shape = SubResource("RectangleShape2D_ux17w")
