@@ -29,7 +29,7 @@ func _on_mouse_exited():
 
 func _attempt_interaction():
 	if Input.is_action_just_pressed("left_click"):
-		if Globals.inventory_item_selected:
+		if Globals.is_inventory_item_selected:
 			_on_object_interaction(Globals.current_selected_inventory_space.held_item)
 		else:
 			_on_player_interaction()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b07p2d66pmox1"]
+[gd_scene load_steps=14 format=3 uid="uid://b07p2d66pmox1"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/inventory.gd" id="2_g6q22"]
+[ext_resource type="Texture2D" uid="uid://wnv2ifgpcsiv" path="res://Assets/Visual Assets/Room/BackgroundEmpty.png" id="2_mi413"]
 [ext_resource type="PackedScene" uid="uid://bgsiklm3n0vte" path="res://Assets/Scenes/InventorySpace.tscn" id="3_nbpcd"]
 [ext_resource type="Texture2D" uid="uid://bv0qo6syh8ms6" path="res://Assets/Visual Assets/Room/RoomSketch.jpg" id="4_34ktl"]
 [ext_resource type="PackedScene" uid="uid://baac1ix0rwejt" path="res://Assets/Scenes/InteractiveObjects/Toolbox.tscn" id="5_gwrpf"]
@@ -24,9 +25,15 @@ mouse_filter = 2
 color = Color(0.051971, 0.051971, 0.051971, 1)
 
 [node name="RoomSketch" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(795.625, 349.125)
 scale = Vector2(1.13675, 0.61375)
 texture = ExtResource("4_34ktl")
+
+[node name="TestBackground" type="Sprite2D" parent="."]
+position = Vector2(795.5, 349)
+scale = Vector2(1.41418, 1.41475)
+texture = ExtResource("2_mi413")
 
 [node name="Inventory" type="Control" parent="." node_paths=PackedStringArray("sewing_kit", "toolbox", "box", "drawer", "bag", "chest", "doll")]
 z_index = 2
@@ -51,31 +58,32 @@ doll = NodePath("../Interactive Objects/Doll")
 [node name="Interactive Objects" type="Node" parent="."]
 
 [node name="Toolbox" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("5_gwrpf")]
-position = Vector2(526, 215)
+position = Vector2(543, 211)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="SewingKit" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("6_rof6x")]
-position = Vector2(339, 320)
+position = Vector2(793, 296)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Box" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("9_7ijb0")]
-position = Vector2(1086, 596)
+position = Vector2(565, 567)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Chest" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("6_100f3")]
-position = Vector2(1171, 397)
+position = Vector2(1172, 495)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Drawer" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("7_1to4s")]
-position = Vector2(394, 393)
+position = Vector2(509, 391)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Bag" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("8_a865k")]
-position = Vector2(792, 254)
+position = Vector2(951, 275)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Doll" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("10_7s5o0")]
-position = Vector2(786, 465)
+position = Vector2(796, 485)
+scale = Vector2(1.6, 1.6)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="DescriptiveText" type="Label" parent="."]

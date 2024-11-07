@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxf3y5nvbffhd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/sewing_kit.gd" id="1_50oy7"]
-[ext_resource type="Texture2D" uid="uid://dby021vgdpcdb" path="res://Assets/Visual Assets/InteractiveObjects/SewingKit.png" id="2_n7ot7"]
+[ext_resource type="Texture2D" uid="uid://ohcq18dwvola" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/SewingKit.png" id="2_16yyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37wha"]
-size = Vector2(83, 59)
+size = Vector2(59, 41)
 
 [node name="SewingKit" type="Area2D"]
 script = ExtResource("1_50oy7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_n7ot7")
+scale = Vector2(1.414, 1.415)
+texture = ExtResource("2_16yyq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 6.5)
+position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_37wha")

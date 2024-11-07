@@ -1,16 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbkxxnnh7f1gp"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/bag.gd" id="1_cyp7t"]
-[ext_resource type="Texture2D" uid="uid://bqayssu24pnrg" path="res://Assets/Visual Assets/InteractiveObjects/Bag.png" id="1_rnpkd"]
+[ext_resource type="Texture2D" uid="uid://2137hm5ucjto" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Bag.png" id="2_edxw4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2dch8"]
-radius = 78.1025
+radius = 50.04
 
 [node name="Bag" type="Area2D"]
 script = ExtResource("1_cyp7t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_rnpkd")
+scale = Vector2(1.414, 1.415)
+texture = ExtResource("2_edxw4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2dch8")

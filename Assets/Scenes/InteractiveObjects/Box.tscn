@@ -1,18 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfb1tat0yoxub"]
+[gd_scene load_steps=3 format=3 uid="uid://bfb1tat0yoxub"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/box.gd" id="1_6ucls"]
-[ext_resource type="Texture2D" uid="uid://ccpbdo385xjhj" path="res://Assets/Visual Assets/InteractiveObjects/Box.png" id="1_7u1e0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_020po"]
-size = Vector2(92.973, 92.0276)
+[ext_resource type="Texture2D" uid="uid://dtnmnigej75w" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Crate.png" id="2_4qbry"]
 
 [node name="Box" type="Area2D"]
 script = ExtResource("1_6ucls")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7u1e0")
+scale = Vector2(-1.414, 1.415)
+texture = ExtResource("2_4qbry")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.51439, -9.01439)
-rotation = -0.000605881
-shape = SubResource("RectangleShape2D_020po")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-15, -78, 69, -52, 63, 39, 10, 79, -71, 45, -66, -45)

@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://baac1ix0rwejt"]
 
-[ext_resource type="Texture2D" uid="uid://1i0512a0wjg8" path="res://Assets/Visual Assets/InteractiveObjects/Toolbox.png" id="1_bgh2d"]
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/toolbox.gd" id="1_soro2"]
+[ext_resource type="Texture2D" uid="uid://c77q47xmy1f8i" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Toolbox.png" id="2_rgvt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14y5j"]
-size = Vector2(90, 56)
+size = Vector2(80, 66)
 
 [node name="Toolbox" type="Area2D"]
 script = ExtResource("1_soro2")
 
 [node name="ToolboxSprite" type="Sprite2D" parent="."]
-position = Vector2(-2, 5)
-texture = ExtResource("1_bgh2d")
+position = Vector2(2, 2.5)
+scale = Vector2(1.414, 1.415)
+texture = ExtResource("2_rgvt4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
+position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_14y5j")

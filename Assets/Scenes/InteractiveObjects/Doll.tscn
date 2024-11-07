@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmx5q6f7knh75"]
+[gd_scene load_steps=19 format=3 uid="uid://cmx5q6f7knh75"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/doll.gd" id="1_k3ld0"]
 [ext_resource type="Texture2D" uid="uid://basn8amavkcte" path="res://Assets/Visual Assets/Room/Chair.png" id="2_jqa7a"]
 [ext_resource type="Texture2D" uid="uid://dtpma2f1oc4tw" path="res://Assets/Visual Assets/InteractiveObjects/Doll/Init.png" id="3_bpen6"]
 [ext_resource type="Texture2D" uid="uid://be54oaby760dk" path="res://Assets/Visual Assets/InteractiveObjects/Doll/Base.png" id="4_cn5ua"]
+[ext_resource type="Texture2D" uid="uid://c0slyla41imvd" path="res://Assets/Visual Assets/InteractiveObjects/Doll/EyePlaced.png" id="5_6duiv"]
 [ext_resource type="Texture2D" uid="uid://c0o1ujwfvpg8w" path="res://Assets/Visual Assets/InteractiveObjects/Doll/EyeR.png" id="5_t3gb4"]
 [ext_resource type="Texture2D" uid="uid://qtymp8x056oi" path="res://Assets/Visual Assets/InteractiveObjects/Doll/ArmsR.png" id="6_gw5bm"]
+[ext_resource type="Texture2D" uid="uid://bd2jfpd2s4x1f" path="res://Assets/Visual Assets/InteractiveObjects/Doll/ArmsPlaced.png" id="7_jfsh7"]
 [ext_resource type="Texture2D" uid="uid://vay71alqosf5" path="res://Assets/Visual Assets/InteractiveObjects/Doll/StakeR.png" id="7_ru2p1"]
 [ext_resource type="Texture2D" uid="uid://b263wqgs3kiuw" path="res://Assets/Visual Assets/InteractiveObjects/Doll/MouthF.png" id="8_jhovj"]
+[ext_resource type="Texture2D" uid="uid://bobaimsmfshuq" path="res://Assets/Visual Assets/InteractiveObjects/Doll/StakePulled.png" id="9_j62j2"]
 [ext_resource type="Texture2D" uid="uid://c2c4jklh3fetr" path="res://Assets/Visual Assets/InteractiveObjects/Doll/MouthS.png" id="9_x70sp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xqxe3"]
@@ -44,7 +47,15 @@ animations = [{
 "texture": ExtResource("5_t3gb4")
 }],
 "loop": true,
-"name": &"toggle_on",
+"name": &"fixed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6duiv")
+}],
+"loop": true,
+"name": &"placed",
 "speed": 5.0
 }]
 
@@ -63,7 +74,15 @@ animations = [{
 "texture": ExtResource("6_gw5bm")
 }],
 "loop": true,
-"name": &"toggle_on",
+"name": &"fixed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jfsh7")
+}],
+"loop": true,
+"name": &"placed",
 "speed": 5.0
 }]
 
@@ -82,7 +101,15 @@ animations = [{
 "texture": ExtResource("7_ru2p1")
 }],
 "loop": true,
-"name": &"toggle_on",
+"name": &"fixed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_j62j2")
+}],
+"loop": true,
+"name": &"pulled",
 "speed": 5.0
 }]
 

@@ -5,7 +5,7 @@ var current_selected_inventory_space = null
 enum inventory_item { EMPTY, KEY, THREAD, PRYBAR, SHEARS, PLIERS, EYE, ARMS }
 @export var inventory_item_images:Array = []
 
-var inventory_item_selected:bool:
+var is_inventory_item_selected:bool:
 	get:
 		return current_selected_inventory_space != null
 
@@ -33,4 +33,7 @@ func _load_inventory_images():
 				inventory_item_images.append(load("res://Assets/Visual Assets/InventoryItems/ButtonEye.png"))
 			inventory_item.ARMS:
 				inventory_item_images.append(load("res://Assets/Visual Assets/InventoryItems/Arms.png"))
-				
+
+
+func set_current_inventory_space(space = null):
+	current_selected_inventory_space = space

@@ -70,39 +70,42 @@ func _on_player_interaction():
 func _set_arms():
 	descriptive_text._update_text("The arms are in place and ready to be attached to the doll")
 	arms_set = true
-	arms_animator.play("toggle_on")
+	arms_animator.play("placed")
 	on_arms_set.emit()
 
 
 func _repair_arms():
 	descriptive_text._add_new_text("The arms have been sewn back onto the doll")
 	arms_repaired = true
+	arms_animator.play("fixed")
 	on_arms_repaired.emit()
 
 
 func _set_eye():
 	descriptive_text._update_text("The eye has been set in place but is not secure yet.")
 	eye_set = true
-	eye_animator.play("toggle_on")
+	eye_animator.play("placed")
 	on_eye_set.emit()
 	
 
 func _repair_eye():
 	descriptive_text._add_new_text("The eye has been sewn onto the doll")
 	eye_repaired = true
+	eye_animator.play("fixed")
 	on_eye_repaired.emit()
 
 
 func _remove_stake():
 	descriptive_text._update_text("You twist the wooden stake free from its position using the pliers. There is now a hole left in the doll's body.")
 	stake_removed = true
+	stake_animator.play("pulled")
 	on_stake_removed.emit()
 
 
 func _repair_stake():
 	descriptive_text._add_new_text("The hole has been stitched shut")
 	stake_repaired = true
-	stake_animator.play("toggle_on")
+	stake_animator.play("fixed")
 	on_stake_repaired.emit()
 
 

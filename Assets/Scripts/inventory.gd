@@ -22,22 +22,22 @@ func _ready() -> void:
 	print("Type of inventory item is %s" % typeof(inventory_spaces[0]))
 	
 	sewing_kit.on_object_opened.connect(_on_sewing_kit_opened)
-	sewing_kit.item_not_used.connect(deselect_inventory_space)
+	sewing_kit.item_not_used.connect(_deselect_current_inventory_space)
 	
 	toolbox.on_object_opened.connect(_on_toolbox_opened)
-	toolbox.item_not_used.connect(deselect_inventory_space)
+	toolbox.item_not_used.connect(_deselect_current_inventory_space)
 	
 	box.on_object_opened.connect(_on_box_opened)
-	box.item_not_used.connect(deselect_inventory_space)
+	box.item_not_used.connect(_deselect_current_inventory_space)
 	
 	drawer.on_object_opened.connect(_on_drawer_opened)
-	drawer.item_not_used.connect(deselect_inventory_space)
+	drawer.item_not_used.connect(_deselect_current_inventory_space)
 	
 	chest.on_object_opened.connect(_on_chest_opened)
-	chest.item_not_used.connect(deselect_inventory_space)
+	chest.item_not_used.connect(_deselect_current_inventory_space)
 	
 	bag.on_object_opened.connect(_on_bag_opened)
-	bag.item_not_used.connect(deselect_inventory_space)
+	bag.item_not_used.connect(_deselect_current_inventory_space)
 	
 	doll.on_arms_set.connect(_on_arms_set)
 	doll.on_arms_repaired.connect(_on_arms_repaired)
@@ -45,7 +45,7 @@ func _ready() -> void:
 	doll.on_eye_repaired.connect(_on_eye_repaired)
 	doll.on_stake_removed.connect(_on_stake_removed)
 	doll.on_stake_repaired.connect(_on_stake_repaired)
-	doll.item_not_used.connect(deselect_inventory_space)
+	doll.item_not_used.connect(_deselect_current_inventory_space)
 
 
 func _format_inventory_spaces():
@@ -60,7 +60,6 @@ func _format_inventory_spaces():
 			temp.global_position.x = global_position.x #+ (temp.size.x * i) + (WHITESPACE_WIDTH * i)
 			temp.global_position.y = global_position.y + (temp.size.y * i) + (WHITESPACE_WIDTH * i)
 			temp.on_space_selected.connect(select_inventory_space)
-			temp.on_space_deselected.connect(deselect_inventory_space)
 			
 			inventory_spaces.append(temp)
 			
@@ -71,32 +70,23 @@ func _format_inventory_spaces():
 		pass
 
 
-func select_inventory_space(space):
-	if space.held_item == null:
-		print("No item in this slot")
-		return
-	
-	print("Inventory space selected with " + str(space.held_item))
-	Globals.current_selected_inventory_space = space
-	
+func select_inventory_space(space):	
 	for n in inventory_spaces.size():
 		print("Is space %s equal to space %s?: %s" % [inventory_spaces[n], space, inventory_spaces[n] == space])
 		
 		if inventory_spaces[n] != space:
-			inventory_spaces[n].manually_deselect()
+			inventory_spaces[n]._set_selection_border_invisible()
 
 
-func deselect_inventory_space():
-	Globals.current_selected_inventory_space = null
-	print("Deselecting inventory space")
+func _deselect_current_inventory_space():
+	Globals.current_selected_inventory_space._deselect_current_inventory_space()
 
 
 func _on_sewing_kit_opened():
-	if _add_item_to_inventory(Globals.inventory_item.THREAD):
-		sewing_kit._set_open()
-	else:
+	if not _add_item_to_inventory(Globals.inventory_item.THREAD):
 		return
 	
+	sewing_kit._set_open()
 	_update_inventory_visuals()
 	_print_inventory()
 
@@ -104,25 +94,23 @@ func _on_sewing_kit_opened():
 func _on_toolbox_opened():
 	_remove_inventory_item()
 	
-	if _add_item_to_inventory(Globals.inventory_item.PRYBAR):
-		toolbox._set_open()
-	else:
+	if not _add_item_to_inventory(Globals.inventory_item.PRYBAR):
 		return
-	
+		
+	toolbox._set_open()
 	_update_inventory_visuals()
 	_print_inventory()
 
 
 func _on_box_opened():
-	if drawer.is_opened:
+	if chest.is_opened:
 		print("The prybar has broken")
 		_remove_inventory_item()
 
-	if _add_item_to_inventory(Globals.inventory_item.SHEARS):
-		box._set_open()
-	else:
+	if not _add_item_to_inventory(Globals.inventory_item.SHEARS):
 		return
-
+	
+	box._set_open()
 	_update_inventory_visuals()
 	_print_inventory()
 
@@ -132,11 +120,10 @@ func _on_drawer_opened():
 		print("The prybar has broken")
 		_remove_inventory_item()
 		
-	if _add_item_to_inventory(Globals.inventory_item.EYE):
-		drawer._set_open()
-	else:
+	if not _add_item_to_inventory(Globals.inventory_item.EYE):
 		return
-
+	
+	drawer._set_open()
 	_update_inventory_visuals()
 	_print_inventory()
 
@@ -146,11 +133,10 @@ func _on_chest_opened():
 		print("The shears get snagged and fall apart")
 		_remove_inventory_item()
 	
-	if _add_item_to_inventory(Globals.inventory_item.PLIERS):
-		chest._set_open()
-	else:
+	if not _add_item_to_inventory(Globals.inventory_item.PLIERS):
 		return
 	
+	chest._set_open()
 	_update_inventory_visuals()
 	_print_inventory()
 
@@ -160,11 +146,10 @@ func _on_bag_opened():
 		print("The shears bend and the pin comes loose on the last strap")
 		_remove_inventory_item()
 	
-	if _add_item_to_inventory(Globals.inventory_item.ARMS):
-		bag._set_open()
-	else:
+	if not _add_item_to_inventory(Globals.inventory_item.ARMS):
 		return
 	
+	bag._set_open()
 	_update_inventory_visuals()
 	_print_inventory()
 
@@ -233,11 +218,14 @@ func _find_empty_inventory_space() -> Object:
 func _remove_inventory_item():
 	var space = Globals.current_selected_inventory_space
 	space.held_item = Globals.inventory_item.EMPTY
-	Globals.current_selected_inventory_space = null
+	space._deselect_current_inventory_space()	
 	_update_inventory_visuals()
 
 
 func _update_inventory_visuals():
+	if Globals.is_inventory_item_selected:
+		Globals.current_selected_inventory_space._deselect_current_inventory_space()
+	
 	for n in inventory_spaces.size():
 		var space = inventory_spaces[n]
 		

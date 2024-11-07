@@ -1,6 +1,5 @@
 extends InteractiveObject
 
-
 var object_empty_message:String = "Drawer has been opened and is empty"
 
 func _on_object_interaction(object):
