@@ -2,7 +2,7 @@ extends Control
 
 @export var max_spaces:int
 @export var test_inventory:PackedScene
-@export var sewing_kit:Node
+@export var sewing_kit:Node2D
 @export var toolbox:Node
 @export var box:Node
 @export var drawer:Node
@@ -46,6 +46,7 @@ func _ready() -> void:
 	doll.on_stake_removed.connect(_on_stake_removed)
 	doll.on_stake_repaired.connect(_on_stake_repaired)
 	doll.item_not_used.connect(_deselect_current_inventory_space)
+	doll.on_repairs_completed.connect(_disable_colliders)
 
 
 func _format_inventory_spaces():
@@ -83,36 +84,30 @@ func _deselect_current_inventory_space():
 
 
 func _on_sewing_kit_opened():
-	if not _add_item_to_inventory(Globals.inventory_item.THREAD):
-		return
+	_add_item_to_inventory(Globals.inventory_item.THREAD)
 	
 	sewing_kit._set_open()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_toolbox_opened():
 	_remove_inventory_item()
 	
-	if not _add_item_to_inventory(Globals.inventory_item.PRYBAR):
-		return
+	_add_item_to_inventory(Globals.inventory_item.PRYBAR)
 		
 	toolbox._set_open()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_box_opened():
-	if chest.is_opened:
+	if drawer.is_opened:
 		print("The prybar has broken")
 		_remove_inventory_item()
 
-	if not _add_item_to_inventory(Globals.inventory_item.SHEARS):
-		return
+	_add_item_to_inventory(Globals.inventory_item.SHEARS)
 	
 	box._set_open()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_drawer_opened():
@@ -120,12 +115,10 @@ func _on_drawer_opened():
 		print("The prybar has broken")
 		_remove_inventory_item()
 		
-	if not _add_item_to_inventory(Globals.inventory_item.EYE):
-		return
+	_add_item_to_inventory(Globals.inventory_item.EYE)
 	
 	drawer._set_open()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_chest_opened():
@@ -133,12 +126,10 @@ func _on_chest_opened():
 		print("The shears get snagged and fall apart")
 		_remove_inventory_item()
 	
-	if not _add_item_to_inventory(Globals.inventory_item.PLIERS):
-		return
+	_add_item_to_inventory(Globals.inventory_item.PLIERS)
 	
 	chest._set_open()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_bag_opened():
@@ -146,18 +137,15 @@ func _on_bag_opened():
 		print("The shears bend and the pin comes loose on the last strap")
 		_remove_inventory_item()
 	
-	if not _add_item_to_inventory(Globals.inventory_item.ARMS):
-		return
+	_add_item_to_inventory(Globals.inventory_item.ARMS)
 	
 	bag._set_open()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_arms_set():
 	_remove_inventory_item()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_arms_repaired():
@@ -165,13 +153,11 @@ func _on_arms_repaired():
 		_remove_inventory_item()
 	
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_eye_set():
 	_remove_inventory_item()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_eye_repaired():
@@ -179,13 +165,11 @@ func _on_eye_repaired():
 		_remove_inventory_item()
 	
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_stake_removed():
 	_remove_inventory_item()
 	_update_inventory_visuals()
-	_print_inventory()
 
 
 func _on_stake_repaired():
@@ -193,18 +177,12 @@ func _on_stake_repaired():
 		_remove_inventory_item()
 	
 	_update_inventory_visuals()
-	_print_inventory()
 
 
-func _add_item_to_inventory(item:Globals.inventory_item) -> bool:
+func _add_item_to_inventory(item:Globals.inventory_item):
 	var empty_space:Object = _find_empty_inventory_space()
-	
-	if (empty_space == null):
-		print("Inventory has been filled but another object is trying to be added. Might need to increase the max space.")
-		return false
-	
+	assert(empty_space != null, "Inventory has been filled but another object is trying to be added. Might need to increase the max space.")
 	empty_space.held_item = item
-	return true
 
 
 func _find_empty_inventory_space() -> Object:
@@ -216,15 +194,13 @@ func _find_empty_inventory_space() -> Object:
 
 
 func _remove_inventory_item():
-	var space = Globals.current_selected_inventory_space
-	space.held_item = Globals.inventory_item.EMPTY
-	space._deselect_current_inventory_space()	
-	_update_inventory_visuals()
+	if Globals.is_inventory_item_selected:
+		Globals.current_selected_inventory_space.held_item = Globals.inventory_item.EMPTY
 
 
 func _update_inventory_visuals():
 	if Globals.is_inventory_item_selected:
-		Globals.current_selected_inventory_space._deselect_current_inventory_space()
+		_deselect_current_inventory_space()
 	
 	for n in inventory_spaces.size():
 		var space = inventory_spaces[n]
@@ -237,6 +213,8 @@ func _update_inventory_visuals():
 		var image = Globals.inventory_item_images[inventory_item]
 		
 		space._update_sprite(image)
+	
+	_print_inventory()
 
 
 func _print_inventory():
@@ -246,3 +224,7 @@ func _print_inventory():
 		output += str(inventory_spaces[n].held_item) + ", "
 		
 	print(output)
+
+
+func _disable_colliders():
+	sewing_kit.set_deferred("monitoring", false)

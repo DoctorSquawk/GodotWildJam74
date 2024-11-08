@@ -20,6 +20,7 @@ signal on_eye_set
 signal on_eye_repaired
 signal on_stake_removed
 signal on_stake_repaired
+signal on_repairs_completed
 
 
 func _on_object_interaction(object):
@@ -58,13 +59,31 @@ func _on_object_interaction(object):
 
 
 func _on_player_interaction():
-	if not init_idle:
-		return
-	
-	descriptive_text._update_text("It appears to be a doll. Seems like it's missing its eye and arms. There's also a stake driven through it, pinning it to the chair it sits in. Creepy. Maybe you can fix it up.")
-	init_idle = false
-	base_animator.play("interact_idle")
-	mouth_animator.play("mouth_frown")
+	if init_idle:
+		descriptive_text._update_text("It appears to be a doll. Seems like it's missing its eye and arms. There's also a stake driven through it, pinning it to the chair it sits in. Creepy. Maybe you can fix it up.")
+		init_idle = false
+		base_animator.play("interact_idle")
+		mouth_animator.play("mouth_frown")
+	else:
+		descriptive_text._update_text("The urge to repair the doll remains.")
+
+		if not arms_repaired:
+			if not arms_set:
+				descriptive_text._add_new_text("The arms appear to have been ripped off by force.")
+			else:
+				descriptive_text._add_new_text("The arms are resting limply on the doll. They need to be attached somehow.")
+			
+		if not eye_repaired:
+			if not eye_set:
+				descriptive_text._add_new_text("The eye appears to be missing. It can't see you yet.")
+			else:
+				descriptive_text._add_new_text("You are holding the eye to the doll's unamused visage but it remains unsecured.")
+		
+		if not stake_repaired:
+			if not stake_removed:
+				descriptive_text._add_new_text("That wooden stake looks uncomfortable.")
+			else:
+				descriptive_text._add_new_text("A deep wound has been left by the stake. It will require stitches.")
 
 
 func _set_arms():
@@ -112,4 +131,5 @@ func _repair_stake():
 func _complete_repairs():
 	descriptive_text._update_text("The doll has been completely repaired!")
 	mouth_animator.play("mouth_smile")
+	on_repairs_completed.emit()
 	pass
