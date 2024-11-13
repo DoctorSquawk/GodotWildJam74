@@ -2,6 +2,11 @@ extends InteractiveObject
 
 var object_empty_message:String = "The bag doesn't seem to contain anything else useful."
 
+func _ready() -> void:
+	super()
+	sprite.play("Closed")
+
+
 func _on_object_interaction(object):
 	if is_opened:
 		descriptive_text._update_text(object_empty_message)
@@ -10,6 +15,7 @@ func _on_object_interaction(object):
 	
 	if object == Globals.inventory_item.SHEARS:
 		_open_object("The shears tear through the fabric and out from the clutter falls a pair of cotton-stuffed doll arms")
+		sprite.play("Opened")
 	else:
 		descriptive_text._update_text("That doesn't appear to work")
 		item_not_used.emit()

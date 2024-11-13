@@ -1,14 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://g82ujyg2wuw0"]
+[gd_scene load_steps=5 format=3 uid="uid://g82ujyg2wuw0"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/chest.gd" id="1_g6sax"]
 [ext_resource type="Texture2D" uid="uid://dpkqc5tbnix60" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Chest.png" id="2_8emu4"]
+[ext_resource type="Texture2D" uid="uid://4xu4ufhnd2ut" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/ChestOpen.png" id="3_wg7gq"]
 
-[node name="Chest" type="Area2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2pa2e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8emu4")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wg7gq")
+}],
+"loop": true,
+"name": &"Opened",
+"speed": 5.0
+}]
+
+[node name="Chest" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_g6sax")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-16, -11)
 scale = Vector2(1.414, 1.415)
 texture = ExtResource("2_8emu4")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-16, -11)
+scale = Vector2(1.414, 1.415)
+sprite_frames = SubResource("SpriteFrames_2pa2e")
+animation = &"Closed"
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-42, -118, 113, -31, 139, -4, 140, 114, 5, 121, -136, 92, -108, 0, -92, -103)
+polygon = PackedVector2Array(-42, -118, 113, -31, 135, -3, 135, 117, -32, 116, -136, 92, -101, 2, -102, -63, -83, -100)

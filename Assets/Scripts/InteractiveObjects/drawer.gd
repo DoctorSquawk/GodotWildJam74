@@ -2,6 +2,11 @@ extends InteractiveObject
 
 var object_empty_message:String = "Drawer has been opened and is empty"
 
+func _ready() -> void:
+	super()
+	sprite.play("Closed")
+
+
 func _on_object_interaction(object):
 	if is_opened:
 		descriptive_text._update_text(object_empty_message)
@@ -10,6 +15,7 @@ func _on_object_interaction(object):
 		
 	if object == Globals.inventory_item.PRYBAR:
 		_open_object("The wood on the drawer splinters as it is forced open. You've obtained a button eye")
+		sprite.play("Opened")
 	else:
 		descriptive_text._update_text("That doesn't seem to work...The drawer is still stuck fast.")
 		item_not_used.emit()

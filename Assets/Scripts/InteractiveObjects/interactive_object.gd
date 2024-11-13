@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var sprite:AnimatedSprite2D
 var is_mouse_hovering:bool = false
 var is_opened:bool = false
 
@@ -11,6 +12,7 @@ signal on_object_opened
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	
 
 
 func _process(delta: float) -> void:

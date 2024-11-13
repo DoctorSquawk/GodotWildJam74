@@ -2,6 +2,11 @@ extends InteractiveObject
 
 var object_empty_message:String = "Nothing else in the kit catches your eye"
 
+func _ready() -> void:
+	super()
+	sprite.play("Closed")
+
+
 func _on_object_interaction(object):
 	if is_opened:
 		descriptive_text._update_text(object_empty_message)
@@ -18,3 +23,4 @@ func _on_player_interaction():
 		return
 	
 	_open_object("You've found a needle and thread")
+	sprite.play("Opened")

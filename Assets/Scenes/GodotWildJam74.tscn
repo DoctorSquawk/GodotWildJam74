@@ -70,7 +70,7 @@ position = Vector2(565, 567)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Chest" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("6_100f3")]
-position = Vector2(1172, 495)
+position = Vector2(1163, 496)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Drawer" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("7_1to4s")]
@@ -78,7 +78,7 @@ position = Vector2(509, 391)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Bag" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("8_a865k")]
-position = Vector2(951, 275)
+position = Vector2(946, 288)
 descriptive_text = NodePath("../../DescriptiveText")
 
 [node name="Doll" parent="Interactive Objects" node_paths=PackedStringArray("descriptive_text") instance=ExtResource("10_7s5o0")]

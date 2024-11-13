@@ -1,8 +1,11 @@
 extends InteractiveObject
 
-@export var opened_box:CompressedTexture2D
-
 var object_empty_message:String = "Box has been opened and is empty"
+
+func _ready() -> void:
+	super()
+	sprite.play("Closed")
+
 
 func _on_object_interaction(object):
 	if is_opened:
@@ -12,6 +15,7 @@ func _on_object_interaction(object):
 	
 	if object == Globals.inventory_item.PRYBAR:
 		_open_object("The box lid pops off! You got a pair of garden shears.")
+		sprite.play("Opened")
 	else:
 		descriptive_text._update_text("That doesn't seem to work...the box lid is tightly shut")
 		item_not_used.emit()

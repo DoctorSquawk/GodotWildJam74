@@ -1,18 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://baac1ix0rwejt"]
+[gd_scene load_steps=6 format=3 uid="uid://baac1ix0rwejt"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/toolbox.gd" id="1_soro2"]
 [ext_resource type="Texture2D" uid="uid://c77q47xmy1f8i" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Toolbox.png" id="2_rgvt4"]
+[ext_resource type="Texture2D" uid="uid://dkm8h0iljm6er" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/ToolboxOpen.png" id="3_v1hh8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vd416"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rgvt4")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v1hh8")
+}],
+"loop": true,
+"name": &"Opened",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14y5j"]
 size = Vector2(80, 66)
 
-[node name="Toolbox" type="Area2D"]
+[node name="Toolbox" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_soro2")
+sprite = NodePath("AnimatedSprite2D")
 
-[node name="ToolboxSprite" type="Sprite2D" parent="."]
-position = Vector2(2, 2.5)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
 scale = Vector2(1.414, 1.415)
-texture = ExtResource("2_rgvt4")
+sprite_frames = SubResource("SpriteFrames_vd416")
+animation = &"Opened"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 2)
