@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b07p2d66pmox1"]
+[gd_scene load_steps=15 format=3 uid="uid://b07p2d66pmox1"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/inventory.gd" id="2_g6q22"]
 [ext_resource type="Texture2D" uid="uid://wnv2ifgpcsiv" path="res://Assets/Visual Assets/Room/BackgroundEmpty.png" id="2_mi413"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bfb1tat0yoxub" path="res://Assets/Scenes/InteractiveObjects/Box.tscn" id="9_7ijb0"]
 [ext_resource type="PackedScene" uid="uid://cmx5q6f7knh75" path="res://Assets/Scenes/InteractiveObjects/Doll.tscn" id="10_7s5o0"]
 [ext_resource type="Script" path="res://Assets/Scripts/decriptive_text.gd" id="11_v2f2s"]
+[ext_resource type="AudioStream" uid="uid://b2yjpfu4ef6np" path="res://Assets/Audio/forest.ogg" id="13_vpr4l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tblrg"]
 font_size = 25
@@ -95,3 +96,8 @@ label_settings = SubResource("LabelSettings_tblrg")
 horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("11_v2f2s")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_vpr4l")
+volume_db = 5.5
+autoplay = true

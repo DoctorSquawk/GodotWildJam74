@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dntnjjgf3tinv"
+path="res://.godot/imported/SewingKitOpen-1.mp3-dc1d29f146e9af4d2feb27957389de95.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Sewing Kit/SewingKitOpen-1.mp3"
+dest_files=["res://.godot/imported/SewingKitOpen-1.mp3-dc1d29f146e9af4d2feb27957389de95.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

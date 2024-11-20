@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bmmnfyfyi8qke"
+path="res://.godot/imported/cloth4.ogg-a6ff4aaf11896018a19d816fd7aa315f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Sack/cloth4.ogg"
+dest_files=["res://.godot/imported/cloth4.ogg-a6ff4aaf11896018a19d816fd7aa315f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

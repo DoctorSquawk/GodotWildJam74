@@ -14,6 +14,7 @@ func _on_object_interaction(object):
 		return
 	
 	descriptive_text._update_text("That doesn't do anything")
+	play_sound_effect(interaction_failure_sound)
 	item_not_used.emit()
 
 
@@ -24,3 +25,4 @@ func _on_player_interaction():
 	
 	_open_object("You've found a needle and thread")
 	sprite.play("Opened")
+	play_sound_effect(open_sound)

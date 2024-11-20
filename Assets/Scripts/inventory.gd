@@ -3,15 +3,18 @@ extends Control
 @export var max_spaces:int
 @export var test_inventory:PackedScene
 @export var sewing_kit:Node2D
-@export var toolbox:Node
-@export var box:Node
-@export var drawer:Node
-@export var bag:Node
-@export var chest:Node
-@export var doll:Node
+@export var toolbox:Node2D
+@export var box:Node2D
+@export var drawer:Node2D
+@export var bag:Node2D
+@export var chest:Node2D
+@export var doll:Node2D
+
+var interactive_objects:Array
 
 var inventory_spaces:Array
 const WHITESPACE_WIDTH:float = 50.0
+
 
 func _ready() -> void:
 	_format_inventory_spaces()
@@ -20,6 +23,8 @@ func _ready() -> void:
 	_update_inventory_visuals()
 	
 	print("Type of inventory item is %s" % typeof(inventory_spaces[0]))
+	
+	interactive_objects = [sewing_kit, toolbox, box, drawer, bag, chest, doll]
 	
 	sewing_kit.on_object_opened.connect(_on_sewing_kit_opened)
 	sewing_kit.item_not_used.connect(_deselect_current_inventory_space)
@@ -60,7 +65,8 @@ func _format_inventory_spaces():
 			temp.held_item = Globals.inventory_item.EMPTY
 			temp.global_position.x = global_position.x #+ (temp.size.x * i) + (WHITESPACE_WIDTH * i)
 			temp.global_position.y = global_position.y + (temp.size.y * i) + (WHITESPACE_WIDTH * i)
-			temp.on_space_selected.connect(select_inventory_space)
+			temp.on_space_clicked.connect(_on_inventory_space_pressed)
+			#temp.on_space_selected.connect(select_inventory_space)
 			
 			inventory_spaces.append(temp)
 			
@@ -71,7 +77,17 @@ func _format_inventory_spaces():
 		pass
 
 
-func select_inventory_space(space):	
+func _on_inventory_space_pressed(space:Object):
+	if space == Globals.current_selected_inventory_space:
+		_deselect_current_inventory_space()
+	else:
+		_select_inventory_space(space)
+
+
+func _select_inventory_space(space):	
+	Globals.current_selected_inventory_space = space
+	space._set_selection_border_visible()
+	
 	for n in inventory_spaces.size():
 		print("Is space %s equal to space %s?: %s" % [inventory_spaces[n], space, inventory_spaces[n] == space])
 		
@@ -80,7 +96,8 @@ func select_inventory_space(space):
 
 
 func _deselect_current_inventory_space():
-	Globals.current_selected_inventory_space._deselect_current_inventory_space()
+	Globals.current_selected_inventory_space._set_selection_border_invisible()
+	Globals.current_selected_inventory_space = null
 
 
 func _on_sewing_kit_opened():
@@ -227,4 +244,8 @@ func _print_inventory():
 
 
 func _disable_colliders():
-	sewing_kit.set_deferred("monitoring", false)
+	for n in interactive_objects.size():
+		interactive_objects[n].set_collision_activity(true)
+		
+	for n in inventory_spaces.size():
+		inventory_spaces[n].disabled = true

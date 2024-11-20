@@ -16,8 +16,10 @@ func _on_object_interaction(object):
 	if object == Globals.inventory_item.SHEARS:
 		_open_object("The shears tear through the fabric and out from the clutter falls a pair of cotton-stuffed doll arms")
 		sprite.play("Opened")
+		play_sound_effect(open_sound)
 	else:
 		descriptive_text._update_text("That doesn't appear to work")
+		play_sound_effect(interaction_failure_sound)
 		item_not_used.emit()
 
 
@@ -27,3 +29,4 @@ func _on_player_interaction():
 		return
 	
 	descriptive_text._update_text("The bag seems tied shut rather tightly but the material doesn't look that strong.")
+	play_sound_effect(interaction_failure_sound)

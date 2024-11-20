@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://do6boypaxtp61"
+path="res://.godot/imported/WoodSlidingSound.mp3-17f0b6d4bdf562558b3639fc89f81c63.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Drawer/WoodSlidingSound.mp3"
+dest_files=["res://.godot/imported/WoodSlidingSound.mp3-17f0b6d4bdf562558b3639fc89f81c63.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

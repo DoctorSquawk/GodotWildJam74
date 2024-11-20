@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4o5go7kiwsp0"
+path="res://.godot/imported/CrateLidOpening.mp3-279d0d78c1b36323a4c62d483e4ea003.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Crate/CrateLidOpening.mp3"
+dest_files=["res://.godot/imported/CrateLidOpening.mp3-279d0d78c1b36323a4c62d483e4ea003.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

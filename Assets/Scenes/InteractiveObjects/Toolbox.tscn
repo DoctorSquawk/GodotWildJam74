@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://baac1ix0rwejt"]
+[gd_scene load_steps=7 format=3 uid="uid://baac1ix0rwejt"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/toolbox.gd" id="1_soro2"]
 [ext_resource type="Texture2D" uid="uid://c77q47xmy1f8i" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Toolbox.png" id="2_rgvt4"]
+[ext_resource type="AudioStream" uid="uid://bac0box75iasi" path="res://Assets/Audio/Sound effects/Possible Winners/Toolbox/InteractionAttempt.mp3" id="3_7wys2"]
 [ext_resource type="Texture2D" uid="uid://dkm8h0iljm6er" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/ToolboxOpen.png" id="3_v1hh8"]
+[ext_resource type="AudioStream" uid="uid://biyqgxtdwu6aa" path="res://Assets/Audio/Sound effects/Possible Winners/Toolbox/ToolboxOpened.mp3" id="4_n2ec2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vd416"]
 animations = [{
@@ -23,19 +25,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_14y5j"]
-size = Vector2(80, 66)
-
-[node name="Toolbox" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Toolbox" type="Area2D" node_paths=PackedStringArray("sprite", "collider", "sound_effect_player")]
 script = ExtResource("1_soro2")
 sprite = NodePath("AnimatedSprite2D")
+collider = NodePath("CollisionPolygon2D")
+sound_effect_player = NodePath("AudioStreamPlayer2D")
+open_sound = ExtResource("4_n2ec2")
+interaction_failure_sound = ExtResource("3_7wys2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(1.414, 1.415)
 sprite_frames = SubResource("SpriteFrames_vd416")
-animation = &"Opened"
+animation = &"Closed"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_14y5j")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2, 3)
+polygon = PackedVector2Array(-46, -37, 45, -37, 45, 34, -46, 34)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n2ec2")
+bus = &"Sound Effects"

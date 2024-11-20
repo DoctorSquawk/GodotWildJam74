@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biyqgxtdwu6aa"
+path="res://.godot/imported/ToolboxOpened.mp3-b22508baff46d40cf6638186959227ba.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Toolbox/ToolboxOpened.mp3"
+dest_files=["res://.godot/imported/ToolboxOpened.mp3-b22508baff46d40cf6638186959227ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

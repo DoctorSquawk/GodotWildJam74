@@ -16,8 +16,10 @@ func _on_object_interaction(object):
 	if object == Globals.inventory_item.PRYBAR:
 		_open_object("The wood on the drawer splinters as it is forced open. You've obtained a button eye")
 		sprite.play("Opened")
+		play_sound_effect(open_sound)
 	else:
 		descriptive_text._update_text("That doesn't seem to work...The drawer is still stuck fast.")
+		play_sound_effect(interaction_failure_sound)
 		item_not_used.emit()
 
 
@@ -27,3 +29,4 @@ func _on_player_interaction():
 		return
 	
 	descriptive_text._update_text("The drawer appears to be stuck in place. Maybe some extra leverage would help.")
+	play_sound_effect(interaction_failure_sound)

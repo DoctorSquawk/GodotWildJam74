@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdkwfq7rv668r"
+path="res://.godot/imported/WoodClunkSounds.mp3-9a5697c61f26969a6956a39403c9c04b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Crate/WoodClunkSounds.mp3"
+dest_files=["res://.godot/imported/WoodClunkSounds.mp3-9a5697c61f26969a6956a39403c9c04b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d2u4kvx7jivvj"
+path="res://.godot/imported/wooded_box_open.ogg-fab454753c67786907849b941510c668.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Crate/wooded_box_open.ogg"
+dest_files=["res://.godot/imported/wooded_box_open.ogg-fab454753c67786907849b941510c668.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

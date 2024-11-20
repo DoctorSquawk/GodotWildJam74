@@ -22,10 +22,19 @@ signal on_stake_removed
 signal on_stake_repaired
 signal on_repairs_completed
 
+func _ready() -> void:
+	super()
+	
+	base_animator.play("init_idle")
+	eye_animator.play("default")
+	arms_animator.play("default")
+	stake_animator.play("default")
+	mouth_animator.play("default")
+	
 
 func _on_object_interaction(object):
 	if init_idle:
-		descriptive_text._update_text("You're not sure what using this item on that would do yet.")
+		descriptive_text._update_text("You're not sure what that would accomplish.")
 		item_not_used.emit()
 		return
 	

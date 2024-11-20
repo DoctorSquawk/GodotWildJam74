@@ -16,7 +16,9 @@ func _on_object_interaction(object):
 	if object == Globals.inventory_item.KEY:
 		_open_object("The key fits the lock and the toolbox opens. You've found a prybar")
 		sprite.play("Opened")
+		play_sound_effect(open_sound)
 	else:
+		play_sound_effect(interaction_failure_sound)
 		item_not_used.emit()
 
 
@@ -25,4 +27,5 @@ func _on_player_interaction():
 		descriptive_text._update_text(object_empty_message)
 		return
 		
+	play_sound_effect(interaction_failure_sound)
 	descriptive_text._update_text("The toolbox appears to be locked")

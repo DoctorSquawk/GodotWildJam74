@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brkga67miy31k"
+path="res://.godot/imported/InteractionAttempt.mp3-255cf600e07fa891e53a788a979a7475.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Drawer/InteractionAttempt.mp3"
+dest_files=["res://.godot/imported/InteractionAttempt.mp3-255cf600e07fa891e53a788a979a7475.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

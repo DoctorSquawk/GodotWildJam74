@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8ccvgut1c2fi"]
+[gd_scene load_steps=7 format=3 uid="uid://c8ccvgut1c2fi"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/drawer.gd" id="1_2rx3b"]
 [ext_resource type="Texture2D" uid="uid://b15ja0dqhid7n" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Drawer.png" id="2_ly83s"]
+[ext_resource type="AudioStream" uid="uid://dx5hu7qlxuqt1" path="res://Assets/Audio/Sound effects/Possible Winners/Drawer/DrawerOpened.mp3" id="2_myyv4"]
 [ext_resource type="Texture2D" uid="uid://ctj0g22o0i7g7" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/DrawerOpen.png" id="3_3k3fr"]
+[ext_resource type="AudioStream" uid="uid://brkga67miy31k" path="res://Assets/Audio/Sound effects/Possible Winners/Drawer/InteractionAttempt.mp3" id="3_hf0rd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_so5t3"]
 animations = [{
@@ -23,12 +25,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ux17w"]
-size = Vector2(51.1343, 80.9772)
-
-[node name="Drawer" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Drawer" type="Area2D" node_paths=PackedStringArray("sprite", "collider", "sound_effect_player")]
 script = ExtResource("1_2rx3b")
 sprite = NodePath("AnimatedSprite2D")
+collider = NodePath("CollisionPolygon2D")
+sound_effect_player = NodePath("AudioStreamPlayer2D")
+open_sound = ExtResource("2_myyv4")
+interaction_failure_sound = ExtResource("3_hf0rd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(28, 5)
@@ -36,8 +39,11 @@ scale = Vector2(1.414, 1.415)
 sprite_frames = SubResource("SpriteFrames_so5t3")
 animation = &"Closed"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.500001, -0.500002)
 rotation = -1.62969
 skew = -0.514872
-shape = SubResource("RectangleShape2D_ux17w")
+polygon = PackedVector2Array(31.0245, -37.7132, 22.3899, 42.6473, -21.9985, 39.5364, -25.9085, -41.7032)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sound Effects"

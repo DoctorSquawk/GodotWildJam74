@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxf3y5nvbffhd"]
+[gd_scene load_steps=7 format=3 uid="uid://dxf3y5nvbffhd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/sewing_kit.gd" id="1_50oy7"]
+[ext_resource type="AudioStream" uid="uid://dntnjjgf3tinv" path="res://Assets/Audio/Sound effects/Possible Winners/Sewing Kit/SewingKitOpen-1.mp3" id="2_1bbw3"]
 [ext_resource type="Texture2D" uid="uid://ohcq18dwvola" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/SewingKit.png" id="2_16yyq"]
+[ext_resource type="AudioStream" uid="uid://bnmspj04wm6xq" path="res://Assets/Audio/Sound effects/Possible Winners/Sewing Kit/InteractionAttempt.mp3" id="3_8ed75"]
 [ext_resource type="Texture2D" uid="uid://cpus5ev6tujq" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/SewingKitOpen.png" id="3_hqt63"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jibaj"]
@@ -23,12 +25,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_37wha"]
-size = Vector2(59, 41)
-
-[node name="SewingKit" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="SewingKit" type="Area2D" node_paths=PackedStringArray("sprite", "collider", "sound_effect_player")]
 script = ExtResource("1_50oy7")
 sprite = NodePath("AnimatedSprite2D")
+collider = NodePath("CollisionPolygon2D")
+sound_effect_player = NodePath("AudioStreamPlayer2D")
+open_sound = ExtResource("2_1bbw3")
+interaction_failure_sound = ExtResource("3_8ed75")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -3)
@@ -36,6 +39,9 @@ scale = Vector2(1.414, 1.415)
 sprite_frames = SubResource("SpriteFrames_jibaj")
 animation = &"Closed"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 4)
-shape = SubResource("RectangleShape2D_37wha")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-3, 4)
+polygon = PackedVector2Array(-25, -22, 34, -22, 34, 20, -25, 20)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sound Effects"

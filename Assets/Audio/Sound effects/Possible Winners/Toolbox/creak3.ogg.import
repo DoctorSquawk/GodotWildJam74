@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://leytjh1tgqh0"
+path="res://.godot/imported/creak3.ogg-7a1e3c925aedab1b379e72de28cea8e8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Toolbox/creak3.ogg"
+dest_files=["res://.godot/imported/creak3.ogg-7a1e3c925aedab1b379e72de28cea8e8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

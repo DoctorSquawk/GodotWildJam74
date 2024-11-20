@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://g82ujyg2wuw0"]
+[gd_scene load_steps=7 format=3 uid="uid://g82ujyg2wuw0"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/chest.gd" id="1_g6sax"]
 [ext_resource type="Texture2D" uid="uid://dpkqc5tbnix60" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Chest.png" id="2_8emu4"]
+[ext_resource type="AudioStream" uid="uid://b7u0fvtu7j4dh" path="res://Assets/Audio/Sound effects/Possible Winners/Chest/ChestOpenedSound.mp3" id="2_485g4"]
+[ext_resource type="AudioStream" uid="uid://jdgk3diulmqd" path="res://Assets/Audio/Sound effects/Possible Winners/Chest/InteractionAttempt.mp3" id="3_ewyy7"]
 [ext_resource type="Texture2D" uid="uid://4xu4ufhnd2ut" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/ChestOpen.png" id="3_wg7gq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2pa2e"]
@@ -23,15 +25,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chest" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Chest" type="Area2D" node_paths=PackedStringArray("sprite", "collider", "sound_effect_player")]
 script = ExtResource("1_g6sax")
 sprite = NodePath("AnimatedSprite2D")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-16, -11)
-scale = Vector2(1.414, 1.415)
-texture = ExtResource("2_8emu4")
+collider = NodePath("CollisionPolygon2D")
+sound_effect_player = NodePath("AudioStreamPlayer2D")
+open_sound = ExtResource("2_485g4")
+interaction_failure_sound = ExtResource("3_ewyy7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-16, -11)
@@ -41,3 +41,6 @@ animation = &"Closed"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-42, -118, 113, -31, 135, -3, 135, 117, -32, 116, -136, 92, -101, 2, -102, -63, -83, -100)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sound Effects"

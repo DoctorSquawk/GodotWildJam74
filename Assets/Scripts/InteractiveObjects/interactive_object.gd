@@ -1,18 +1,22 @@
 extends Area2D
 
 @export var sprite:AnimatedSprite2D
+@export var collider:CollisionPolygon2D
+@export var sound_effect_player:AudioStreamPlayer2D
+@export var descriptive_text:Label
+
+@export var open_sound:AudioStreamMP3
+@export var interaction_failure_sound:AudioStreamMP3
+
 var is_mouse_hovering:bool = false
 var is_opened:bool = false
 
 signal item_not_used
 signal on_object_opened
 
-@export var descriptive_text:Label
-
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	
 
 
 func _process(delta: float) -> void:
@@ -45,12 +49,21 @@ func _on_object_interaction(object):
 func _on_player_interaction():
 	print("No inventory object selected. Player is interacting directly!")
 	pass
-	
-	
+
+
 func _open_object(open_message):
 	descriptive_text._update_text(open_message)
 	on_object_opened.emit()
-	
-	
+
+
 func _set_open():
 	is_opened = true
+
+
+func set_collision_activity(isDisabled:bool):
+	collider.disabled = isDisabled
+
+
+func play_sound_effect(sound_effect:AudioStreamMP3):
+	sound_effect_player.stream = sound_effect
+	sound_effect_player.play()

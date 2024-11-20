@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbkxxnnh7f1gp"]
+[gd_scene load_steps=7 format=3 uid="uid://cbkxxnnh7f1gp"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/bag.gd" id="1_cyp7t"]
 [ext_resource type="Texture2D" uid="uid://2137hm5ucjto" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/Bag.png" id="2_edxw4"]
+[ext_resource type="AudioStream" uid="uid://c8y4rxa8yra2d" path="res://Assets/Audio/Sound effects/Possible Winners/Sack/SackOpened.mp3" id="2_hbk6f"]
 [ext_resource type="Texture2D" uid="uid://djfffw70pnj2u" path="res://Assets/Visual Assets/InteractiveObjects/NewObjects/BagOpen.png" id="3_gjp32"]
+[ext_resource type="AudioStream" uid="uid://ufm3j4yq1dl3" path="res://Assets/Audio/Sound effects/Possible Winners/Sack/InteractionAttempt.mp3" id="3_wq2eg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i78xi"]
 animations = [{
@@ -23,13 +25,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2dch8"]
-radius = 50.04
-
-[node name="Bag" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Bag" type="Area2D" node_paths=PackedStringArray("sprite", "collider", "sound_effect_player")]
 position = Vector2(-1, 7)
 script = ExtResource("1_cyp7t")
 sprite = NodePath("AnimatedSprite2D")
+collider = NodePath("CollisionPolygon2D")
+sound_effect_player = NodePath("AudioStreamPlayer2D")
+open_sound = ExtResource("2_hbk6f")
+interaction_failure_sound = ExtResource("3_wq2eg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 4)
@@ -37,6 +40,8 @@ scale = Vector2(1.414, 1.415)
 sprite_frames = SubResource("SpriteFrames_i78xi")
 animation = &"Closed"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -7)
-shape = SubResource("CircleShape2D_2dch8")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2, -10)
+polygon = PackedVector2Array(-31, -42, 33, -42, 33, 38, -31, 38)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

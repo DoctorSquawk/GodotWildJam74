@@ -3,3 +3,7 @@
 /android/
 *.clip
 /Builds
+*.zip
+/Assets/Audio/Sound effects/Clicking Sounds
+/Assets/Audio/Sound effects/MoreSounds
+/Assets/Audio/Sound effects/RPGsounds_Kenney
