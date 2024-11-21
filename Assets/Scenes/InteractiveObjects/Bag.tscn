@@ -45,3 +45,4 @@ position = Vector2(2, -10)
 polygon = PackedVector2Array(-31, -42, 33, -42, 33, 38, -31, 38)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sound Effects"

@@ -184,3 +184,4 @@ visible = false
 polygon = PackedVector2Array(-41, -71, 0, -82, 42, -72.5, 37, 0, 53, 76.5, -57, 76.5, -37, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sound Effects"
