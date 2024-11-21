@@ -1,10 +1,19 @@
 extends InteractiveObject
 
+#Sprite animators
 @export var base_animator:AnimatedSprite2D
 @export var eye_animator:AnimatedSprite2D
 @export var arms_animator:AnimatedSprite2D
 @export var stake_animator:AnimatedSprite2D
 @export var mouth_animator:AnimatedSprite2D
+
+#Sound Effects
+@export var initial_interaction:AudioStreamMP3
+@export var interaction_attempt:AudioStreamMP3
+@export var set_part:AudioStreamMP3
+@export var remove_stake:AudioStreamMP3
+@export var sew_repair:AudioStreamMP3
+
 
 var init_idle: = true
 var arms_set:bool = false
@@ -35,6 +44,7 @@ func _ready() -> void:
 func _on_object_interaction(object):
 	if init_idle:
 		descriptive_text._update_text("You're not sure what that would accomplish.")
+		play_sound_effect(interaction_attempt)
 		item_not_used.emit()
 		return
 	
@@ -64,6 +74,7 @@ func _on_object_interaction(object):
 				_complete_repairs()
 		_:
 			descriptive_text._update_text("That doesn't seem to do anything")
+			play_sound_effect(interaction_attempt)
 			item_not_used.emit()
 
 
@@ -73,9 +84,11 @@ func _on_player_interaction():
 		init_idle = false
 		base_animator.play("interact_idle")
 		mouth_animator.play("mouth_frown")
+		play_sound_effect(initial_interaction)
 	else:
 		descriptive_text._update_text("The urge to repair the doll remains.")
-
+		play_sound_effect(interaction_attempt)
+		
 		if not arms_repaired:
 			if not arms_set:
 				descriptive_text._add_new_text("The arms appear to have been ripped off by force.")
@@ -99,6 +112,7 @@ func _set_arms():
 	descriptive_text._update_text("The arms are in place and ready to be attached to the doll")
 	arms_set = true
 	arms_animator.play("placed")
+	play_sound_effect(set_part)
 	on_arms_set.emit()
 
 
@@ -106,6 +120,7 @@ func _repair_arms():
 	descriptive_text._add_new_text("The arms have been sewn back onto the doll")
 	arms_repaired = true
 	arms_animator.play("fixed")
+	play_sound_effect(sew_repair)
 	on_arms_repaired.emit()
 
 
@@ -113,6 +128,7 @@ func _set_eye():
 	descriptive_text._update_text("The eye has been set in place but is not secure yet.")
 	eye_set = true
 	eye_animator.play("placed")
+	play_sound_effect(set_part)
 	on_eye_set.emit()
 	
 
@@ -120,6 +136,7 @@ func _repair_eye():
 	descriptive_text._add_new_text("The eye has been sewn onto the doll")
 	eye_repaired = true
 	eye_animator.play("fixed")
+	play_sound_effect(sew_repair)
 	on_eye_repaired.emit()
 
 
@@ -127,6 +144,7 @@ func _remove_stake():
 	descriptive_text._update_text("You twist the wooden stake free from its position using the pliers. There is now a hole left in the doll's body.")
 	stake_removed = true
 	stake_animator.play("pulled")
+	play_sound_effect(remove_stake)
 	on_stake_removed.emit()
 
 
@@ -134,6 +152,7 @@ func _repair_stake():
 	descriptive_text._add_new_text("The hole has been stitched shut")
 	stake_repaired = true
 	stake_animator.play("fixed")
+	play_sound_effect(sew_repair)
 	on_stake_repaired.emit()
 
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0kf4cpkajdcd"
+path="res://.godot/imported/ClothSet.mp3-a6a7668649cc35f9fb0a4ba2b984f896.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Doll/ClothSet.mp3"
+dest_files=["res://.godot/imported/ClothSet.mp3-a6a7668649cc35f9fb0a4ba2b984f896.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

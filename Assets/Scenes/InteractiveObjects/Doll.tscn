@@ -1,12 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmx5q6f7knh75"]
+[gd_scene load_steps=23 format=3 uid="uid://cmx5q6f7knh75"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/InteractiveObjects/doll.gd" id="1_k3ld0"]
 [ext_resource type="Texture2D" uid="uid://basn8amavkcte" path="res://Assets/Visual Assets/Room/Chair.png" id="2_jqa7a"]
+[ext_resource type="AudioStream" uid="uid://dluauh8d24man" path="res://Assets/Audio/Sound effects/Possible Winners/Doll/InitialInteraction-1.mp3" id="2_lhyn4"]
+[ext_resource type="AudioStream" uid="uid://cqe7qaagv75sp" path="res://Assets/Audio/Sound effects/Possible Winners/Doll/InteractionAttempt.mp3" id="3_8ibc5"]
 [ext_resource type="Texture2D" uid="uid://dtpma2f1oc4tw" path="res://Assets/Visual Assets/InteractiveObjects/Doll/Init.png" id="3_bpen6"]
 [ext_resource type="Texture2D" uid="uid://be54oaby760dk" path="res://Assets/Visual Assets/InteractiveObjects/Doll/Base.png" id="4_cn5ua"]
+[ext_resource type="AudioStream" uid="uid://c0kf4cpkajdcd" path="res://Assets/Audio/Sound effects/Possible Winners/Doll/ClothSet.mp3" id="4_ma8qq"]
 [ext_resource type="Texture2D" uid="uid://c0slyla41imvd" path="res://Assets/Visual Assets/InteractiveObjects/Doll/EyePlaced.png" id="5_6duiv"]
+[ext_resource type="AudioStream" uid="uid://b2r4f45thkna0" path="res://Assets/Audio/Sound effects/Possible Winners/Doll/StakeRemoval.mp3" id="5_jiii2"]
 [ext_resource type="Texture2D" uid="uid://c0o1ujwfvpg8w" path="res://Assets/Visual Assets/InteractiveObjects/Doll/EyeR.png" id="5_t3gb4"]
 [ext_resource type="Texture2D" uid="uid://qtymp8x056oi" path="res://Assets/Visual Assets/InteractiveObjects/Doll/ArmsR.png" id="6_gw5bm"]
+[ext_resource type="AudioStream" uid="uid://das7o2daxb13p" path="res://Assets/Audio/Sound effects/Possible Winners/Doll/Stitching.mp3" id="6_qg1kw"]
 [ext_resource type="Texture2D" uid="uid://bd2jfpd2s4x1f" path="res://Assets/Visual Assets/InteractiveObjects/Doll/ArmsPlaced.png" id="7_jfsh7"]
 [ext_resource type="Texture2D" uid="uid://b263wqgs3kiuw" path="res://Assets/Visual Assets/InteractiveObjects/Doll/MouthF.png" id="8_jhovj"]
 [ext_resource type="Texture2D" uid="uid://c2c4jklh3fetr" path="res://Assets/Visual Assets/InteractiveObjects/Doll/MouthS.png" id="9_x70sp"]
@@ -147,6 +152,11 @@ eye_animator = NodePath("Eye")
 arms_animator = NodePath("Arms")
 stake_animator = NodePath("Stake")
 mouth_animator = NodePath("Mouth")
+initial_interaction = ExtResource("2_lhyn4")
+interaction_attempt = ExtResource("3_8ibc5")
+set_part = ExtResource("4_ma8qq")
+remove_stake = ExtResource("5_jiii2")
+sew_repair = ExtResource("6_qg1kw")
 collider = NodePath("CollisionPolygon2D")
 sound_effect_player = NodePath("AudioStreamPlayer2D")
 

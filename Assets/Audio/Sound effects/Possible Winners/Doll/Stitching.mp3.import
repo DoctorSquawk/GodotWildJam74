@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://das7o2daxb13p"
+path="res://.godot/imported/Stitching.mp3-374cdd30b5763dfd3b73ce2b04e0fbeb.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound effects/Possible Winners/Doll/Stitching.mp3"
+dest_files=["res://.godot/imported/Stitching.mp3-374cdd30b5763dfd3b73ce2b04e0fbeb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
